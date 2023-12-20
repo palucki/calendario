@@ -21,7 +21,6 @@
                     <a href="{% url 'accounts:login' %}" class="py-4 px-6 bg-gray-600 text-white rounded-xl">log in</a>
                 {% else %}
                     <a href="{% url 'dashboard:dashboard' %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">dashboard</a>
-                    <!-- <a href="{% url 'cards:cards' %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">cards</a> -->
                     <a href="{% url 'cards:create_calendar' %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">create calendar</a>
                     <a href="{% url 'cards:create_card' %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">create card</a>
                     <form class="inline py-4 px-6 bg-rose-600 text-white rounded-xl" method="post" action="{% url 'accounts:logout' %}">

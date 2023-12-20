@@ -21,6 +21,7 @@ class Card(models.Model):
     ordering = models.IntegerField()
     text = models.TextField()
     available_at = models.DateTimeField()
+    style = models.CharField(max_length=255, default='bg-gray-100')
 
     def is_available(self):
         return self.available_at < timezone.now()

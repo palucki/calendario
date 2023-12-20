@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_list_or_404
 from django.http import HttpResponse, Http404
@@ -11,6 +13,9 @@ def index(request):
 # @login_required
 def cards(request, calendar_id):
     cards = get_list_or_404(Card, calendar__id=calendar_id)
+    
+    # hardcoded randomization
+    random.shuffle(cards)
 
     return render(request, 'cards/cards.html', {
         'cards': cards,
