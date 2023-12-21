@@ -19,18 +19,19 @@
                         <p class="text-xs" data-available-at="{{card.available_at|date:'U'}}"></p>
                     </div>
                 </button>
-                
-            <div class="modal text-center" id="modal_{{card.id}}">
-                <div class="modal-header">
-                    <div class="title m-auto">
-                        {{card.name}}
+            {% if card.is_available %}
+                <div class="modal text-center" id="modal_{{card.id}}">
+                    <div class="modal-header">
+                        <div class="title m-auto">
+                            {{card.name}}
+                        </div>
+                        <button data-close-button class="close-button">&times;</button>
                     </div>
-                    <button data-close-button class="close-button">&times;</button>
+                    <div class="modal-body" id={{card.id}}>
+                        {{ card.text|linebreaks}}
+                    </div>
                 </div>
-                <div class="modal-body" id={{card.id}}>
-                    {{ card.text|linebreaks}}
-                </div>
-            </div>
+            {% endif %}
         {% endfor %}
 
         <div id="overlay"></div>
