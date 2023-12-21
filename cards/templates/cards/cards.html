@@ -20,10 +20,12 @@
                     </div>
                 </button>
                 
-            <div class="modal" id="modal_{{card.id}}">
+            <div class="modal text-center" id="modal_{{card.id}}">
                 <div class="modal-header">
-                <div class="title">{{card.name}}</div>
-                <button data-close-button class="close-button">&times;</button>
+                    <div class="title m-auto">
+                        {{card.name}}
+                    </div>
+                    <button data-close-button class="close-button">&times;</button>
                 </div>
                 <div class="modal-body" id={{card.id}}>
                     {{ card.text|linebreaks}}
