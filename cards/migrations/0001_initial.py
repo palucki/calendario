@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=255)),
                 ('text', models.TextField(max_length=255)),
-                ('available_at', models.DateTimeField()),
+                ('available_from', models.DateTimeField()),
                 ('calendar', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cards', to='cards.calendar')),
             ],
         ),

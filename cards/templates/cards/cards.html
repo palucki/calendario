@@ -15,8 +15,8 @@
             {% endif %}
                     <div class="{{card.style}} p-6 rounded-xl">
                         <h2 class="text-xl">{{ card.name }}</h2>
-                        <!-- <p class="text-xs" data-available-at="{{card.available_at|date:'U'}}">Dostępny od: {{ card.available_at }}</p> -->
-                        <p class="text-xs" data-available-at="{{card.available_at|date:'U'}}"></p>
+                        <!-- <p class="text-xs" data-available-at="{{card.available_from|date:'U'}}">Dostępny od: {{ card.available_from }}</p> -->
+                        <p class="text-xs" data-available-at="{{card.available_from|date:'U'}}"></p>
                     </div>
                 </button>
             {% if card.is_available %}

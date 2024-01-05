@@ -7,6 +7,7 @@ class Calendar(models.Model):
     name = models.CharField(max_length = 255)
     created_by = models.ForeignKey(User, related_name='calendars', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    available_from = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name
@@ -20,11 +21,11 @@ class Card(models.Model):
     name = models.CharField(max_length=255)
     ordering = models.IntegerField()
     text = models.TextField()
-    available_at = models.DateTimeField()
+    available_from = models.DateTimeField()
     style = models.CharField(max_length=255, default='bg-gray-100')
 
     def is_available(self):
-        return self.available_at < timezone.now()
+        return self.available_from < timezone.now()
     
     def __str__(self):
         return self.name

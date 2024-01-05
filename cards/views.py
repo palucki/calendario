@@ -22,7 +22,7 @@ def cards(request, calendar_id):
     })
 
     # print(request.GET.get('id'))
-    # cards = Card.objects.filter(available_at__lte = datetime.datetime.now())
+    # cards = Card.objects.filter(available_from__lte = datetime.datetime.now())
 
 @login_required
 def create_card(request):
