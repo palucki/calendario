@@ -11,7 +11,11 @@
         {% for calendar in newest_calendars %}
             <div class="mb-2 flex justify-between items-center">
                 <p>{{ calendar.name }}</p>
-                <a href="#" class="underline">Edit</a>
+                <div>
+                    <!-- <a href="#" class="underline">Edit</a> -->
+                    <a href="{% url 'cards:edit_calendar' calendar.id %}">Edit</a>
+                    <a href="{% url 'cards:delete_calendar' calendar.id %}">Delete</a>
+                </div>
             </div>
         {% endfor %}
 

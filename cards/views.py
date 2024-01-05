@@ -43,20 +43,58 @@ def create_card(request):
         'form': form,
     })
 
+# @login_required
+# def create_calendar(request):
+    
+
 @login_required
-def create_calendar(request):
-    if request.method == 'POST':
-        form = CalendarForm(request.POST)
+def edit_calendar(request, calendar_id=None):
+    # the '0' here is a workaround, I don't know how to allow just cards:edit_calendar
+    if calendar_id is None or calendar_id == 0:
+        print("create calendar")
+        if request.method == 'POST':
+            form = CalendarForm(request.POST)
 
-        if form.is_valid():
-            calendar = form.save(commit=False)
-            calendar.created_by = request.user
-            calendar.save()
+            if form.is_valid():
+                calendar = form.save(commit=False)
+                calendar.created_by = request.user
+                calendar.save()
 
-            return redirect('/dashboard/')
+                print("saving new clendar")
+
+                return redirect('/dashboard/')
+        else:
+            form = CalendarForm()
+
+        return render(request, 'cards/calendar.html', {
+            'form': form,
+        })
     else:
-        form = CalendarForm()
+        print("edit calendar")
+        calendar = Calendar.objects.get(id = calendar_id)
+        form = CalendarForm(instance=calendar)
+        if request.method == 'POST':
+            form = CalendarForm(request.POST, instance=calendar)
+            if form.is_valid():
+                calendar = form.save(commit=False)
+                calendar.save()
 
-    return render(request, 'cards/create_calendar.html', {
-        'form': form,
-    })
+                print("saving updated clendar")
+
+                return redirect('/dashboard/')
+        else:
+            print(request.method)
+            
+        return render(request, 'cards/calendar.html', {
+            'form': form,
+            'calendar': calendar,
+            # 'calendar_id': 123
+        })
+    
+@login_required
+def delete_calendar(request, calendar_id=None):
+    print("delete calendar")
+    calendar = Calendar.objects.get(id = calendar_id)
+    calendar.delete()
+
+    return redirect('/dashboard/')

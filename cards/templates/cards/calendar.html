@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Edit calendar{% endblock %}
+
+{% block content %}
+    <h1 class="text-xl">Edit calendar</h1>
+
+    {% if calendar %}
+    <form action="{% url 'cards:edit_calendar' calendar.id %}" method="post">
+    {% else %}
+    <form action="{% url 'cards:edit_calendar' 0%}" method="post">
+    {% endif %}
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Save</button>
+    </form>
+{% endblock %}

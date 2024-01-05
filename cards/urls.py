@@ -9,6 +9,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     # ex: /cards/5/
     path('<int:calendar_id>/', views.cards, name="cards"),
-    path('create-calendar/', views.create_calendar, name='create_calendar'),
+    path('calendar/', views.edit_calendar, name='create_calendar'),
+    path('calendar/<int:calendar_id>', views.edit_calendar, name='edit_calendar'),
+    path('calendar/<int:calendar_id>/delete/', views.delete_calendar, name='delete_calendar'),
     path('create-card/', views.create_card, name='create_card')
 ]
