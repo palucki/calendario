@@ -1,0 +1,7 @@
+<div hx-target="this" hx-swap="outerHTML">
+    <h3>{{ card.name }}</h3>
+    <p>Dostępne od: {{card.available_from}}</p>
+
+    <button hx-get="{% url 'cards:update-card' card.id %}">Update</button>
+    <button hx-post="{% url 'cards:delete-card' card.id %}">Delete</button>
+</div>

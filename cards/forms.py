@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.models import inlineformset_factory
 
 from .models import Calendar, Card 
 
@@ -14,3 +15,12 @@ class CardForm(forms.ModelForm):
         widgets = {
             'available_from' : forms.TextInput(attrs={'type':'datetime-local'}),
         }
+
+CardFormSet = inlineformset_factory(
+    Calendar, 
+    Card,
+    form = CardForm,
+    min_num = 1,
+    can_delete=False,
+    extra = 0 #see what it does
+)

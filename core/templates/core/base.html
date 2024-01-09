@@ -11,6 +11,7 @@
         <title>
             {% block title %}{% endblock %} | advent calendar
         </title>
+
     </head>
     <body>
         <div class="flex flex-col h-screen justify-between">
@@ -26,7 +27,7 @@
                     {% else %}
                         <a href="{% url 'dashboard:dashboard' %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">kalendarze</a>
                         <a href="{% url 'cards:edit_calendar' 0 %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">create calendar</a>
-                        <!-- <a href="{% url 'cards:create_card' %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">create card</a> -->
+                        <!-- <a href="{% url 'cards:create_card' 0 %}" class="py-4 px-6 bg-cyan-600 text-white rounded-xl">create card</a> -->
                         <form class="inline py-4 px-6 bg-rose-600 text-white rounded-xl" method="post" action="{% url 'accounts:logout' %}">
                             {% csrf_token %}
                             <button type="submit">log out</button>
@@ -46,6 +47,12 @@
             </footer>
         </div>
 
+        <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+        <script>
+            document.body.addEventListener('htmx:configRequest', (event) => {
+              event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+            })
+          </script>
 
     </body>
 </html>

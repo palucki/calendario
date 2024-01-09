@@ -5,11 +5,14 @@
 {% block content %}
     <h1 class="text-xl">Create advent card</h1>
 
-    <form method="post" action=".">
-        {% csrf_token %}
+    <button hx-get="{% url 'cards:create-card-form' %}" hx-swap="beforeend" hx-target="#cardforms" class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">
+        Add Card
+    </button>
 
-        {{ form.as_p }}
+    <div id ="cardforms">
+        {% for card in cards %}
+        {% include 'cards/card_detail_component.html' %}
+        {% endfor %}
+    </div>
 
-        <button class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Create</button>
-    </form>
 {% endblock %}

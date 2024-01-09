@@ -1,0 +1,13 @@
+<div hx-target="this" hx-swap="outerHTML">
+    <form method="POST"> 
+        {% csrf_token %}
+        {{ form }}
+    
+        {% if card %}
+            <button hx-post="{% url 'cards:update-card' card.id %}" class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Create</button>
+        {% else %}
+            <button hx-post="." class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Create</button>
+        {% endif %}
+
+    </form>
+</div>
