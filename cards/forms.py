@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.models import inlineformset_factory
+from ckeditor.widgets import CKEditorWidget
 
 from .models import Calendar, Card 
 
@@ -14,6 +15,7 @@ class CardForm(forms.ModelForm):
         fields = ('calendar', 'name', 'text', 'available_from')
         widgets = {
             'available_from' : forms.TextInput(attrs={'type':'datetime-local'}),
+            'text' : CKEditorWidget()
         }
 
 CardFormSet = inlineformset_factory(

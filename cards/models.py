@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 from accounts.models import User 
 
@@ -20,7 +21,7 @@ class Card(models.Model):
     created_by = models.ForeignKey(User, related_name='cards', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     ordering = models.IntegerField()
-    text = models.TextField()
+    text = RichTextField()
     available_from = models.DateTimeField()
     style = models.CharField(max_length=255, default='bg-gray-100')
 

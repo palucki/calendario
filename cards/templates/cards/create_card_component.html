@@ -1,10 +1,22 @@
 <div hx-target="this" hx-swap="outerHTML">
     <form method="POST"> 
+
+        <script>
+            document.body.addEventListener('htmx:configRequest', (event) => {
+                var element = new CKEDITOR.dom.element( document.getElementById( '{{ form.text.id_for_label }}' ) );
+                event.detail.parameters['{{ form.text.html_name }}'] = element.getEditor().getData();        
+            })
+        </script>
+
         {% csrf_token %}
+        
+        {{ form.media }}
         {{ form }}
-    
+
+
+
         {% if card %}
-            <button hx-post="{% url 'cards:update-card' card.id %}" class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Create</button>
+            <button hx-post="{% url 'cards:update-card' card.id %}" class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Save</button>
         {% else %}
             <button hx-post="." class="mt-4 py-4 px-6 bg-cyan-500 text-white rounded-xl">Create</button>
         {% endif %}

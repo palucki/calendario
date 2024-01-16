@@ -33,6 +33,8 @@ def create_card(request, pk):
     cards = Card.objects.filter(calendar=calendar)
     form = CardForm(request.POST or None)
    
+    print("CreateCard")
+
     if request.method == 'POST':
         if form.is_valid():
             card = form.save(commit=False)
@@ -96,9 +98,15 @@ def update_card(request, pk):
     card = Card.objects.get(pk=pk)
     form = CardForm(request.POST or None, instance=card)
 
+    print("UpdateCard")
+
     if request.method == 'POST':
+        card_text = request.POST.get('text', '')
+        print("CARD TEXT:")
+        print(card_text)
         if form.is_valid():
             card = form.save(commit=False)
+
             # TODO: hardcoded claendar id and ordering!!!
             card.calendar_id = 1
             card.created_by = request.user

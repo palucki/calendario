@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'core',
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
+    'ckeditor'
 ]
 
 TAILWIND_APP_NAME = 'theme'
@@ -75,6 +76,12 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'advent.wsgi.application'
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'Basic',
+#     },
+# }
 
 
 # Database
